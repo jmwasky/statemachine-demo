@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-reactor
+
+logging:
+  level:
+    root: debug
+    org.springframework.web: info
+    org.apache.ibatis: debug
+    com.isaac.easy: debug
+    io.netty: info
+  path: "./logs"

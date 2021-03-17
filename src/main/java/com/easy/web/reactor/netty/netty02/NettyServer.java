@@ -1,0 +1,39 @@
+package com.easy.web.reactor.netty.netty02;
+
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+
+/**
+ * @author 闪电侠
+ */
+public class NettyServer {
+    public static void main(String[] args) {
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
+        // 负责接收新线程
+        NioEventLoopGroup boss = new NioEventLoopGroup();
+        // 负责读取数据的线程
+        NioEventLoopGroup worker = new NioEventLoopGroup();
+        serverBootstrap
+                .group(boss, worker)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                    @Override
+                    protected void initChannel( NioSocketChannel ch) {
+                        ch.pipeline().addLast(new StringDecoder());
+                        ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
+                            @Override
+                            protected void channelRead0( ChannelHandlerContext ctx, String msg) {
+                                System.out.println(msg);
+                            }
+                        });
+                    }
+                })
+                .bind(8000);
+    }
+}
