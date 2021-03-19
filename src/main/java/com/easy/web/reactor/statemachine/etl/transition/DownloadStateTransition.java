@@ -25,7 +25,7 @@ public class DownloadStateTransition extends BaseStateMachine {
     private StateMachine<States, Events> stateMachine;
 
     @StatesOnTransition(target = States.DOWNLOAD)
-    public void download(Message<Events> message) {
+    public void download(Message<Events> message, Exception exception) {
         log.info("------- status.id:{}", stateMachine.getState().getId());
         log.info("------- status.getVariables:{}",stateMachine.getExtendedState().getVariables());
         log.info("------- status.uuid:{}",stateMachine.getUuid());
@@ -33,8 +33,16 @@ public class DownloadStateTransition extends BaseStateMachine {
         log.info("--------------准备下载. target status:{}", States.DOWNLOAD.name());
 
         stateMachine.getExtendedState().getVariables().put("download", "downloadtest");
-
         setStatus(States.DOWNLOAD.name());
+        /*int a = 1 /0;
+        throw new IllegalArgumentException("hello");*/
+        try {
+            int a = 1 /0;
+        } catch (Exception ex) {
+            // 错误主动发到状态机
+            stateMachine.setStateMachineError(ex);
+            ex.printStackTrace();
+        }
 
     }
 }

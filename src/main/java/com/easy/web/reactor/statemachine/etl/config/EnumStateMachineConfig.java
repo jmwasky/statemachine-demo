@@ -16,8 +16,8 @@ import java.util.EnumSet;
  * @author think
  * @date 2021/3/17
  */
-@Configuration
-@EnableStateMachine
+//@Configuration
+//@EnableStateMachine
 public class EnumStateMachineConfig extends EnumStateMachineConfigurerAdapter<States, Events> {
 
     @Resource
@@ -30,7 +30,7 @@ public class EnumStateMachineConfig extends EnumStateMachineConfigurerAdapter<St
 
     @Override
     public void configure( StateMachineTransitionConfigurer<States, Events> transitions) throws Exception {
-        transitions
+       /* transitions
                 .withExternal()
                     .source(States.LISTEN).target(States.DOWNLOAD)
                     .event(Events.NOTICE_DOWNLOAD)
@@ -53,6 +53,6 @@ public class EnumStateMachineConfig extends EnumStateMachineConfigurerAdapter<St
                     .and()
                 .withExternal()
                         .source(States.UPLOAD).target(States.LISTEN)
-                        .event(Events.ROLLBACK);
+                        .event(Events.ROLLBACK);*/
     }
 }

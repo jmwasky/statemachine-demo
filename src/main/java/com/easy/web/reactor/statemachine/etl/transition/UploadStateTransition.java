@@ -12,7 +12,7 @@ import org.springframework.statemachine.annotation.WithStateMachine;
 /**
  * @author think
  */
-@WithStateMachine
+//@WithStateMachine
 @Data
 @Slf4j
 public class UploadStateTransition extends BaseStateMachine {

@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @author think
  * @date 2021/3/17
  */
-@WithStateMachine
+//@WithStateMachine
 @Data
 @Slf4j
 public class InsertStateTransition extends BaseStateMachine {

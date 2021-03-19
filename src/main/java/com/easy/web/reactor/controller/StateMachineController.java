@@ -19,22 +19,17 @@ import java.time.Duration;
  * @author think
  * @date 2021/2/7
  */
-@RestController
-@RequestMapping("/api/state-etl")
-public class StateMachineController {
+//@RestController
+//@RequestMapping("/api/state-etl")
+public class StateMachineController extends BaseController {
 
     @Resource
     private StateMachine<States, Events> stateMachine;
 
-    private Mono<String> printState() {
-        return Mono.create(stringMonoSink ->
-                stringMonoSink.success(stateMachine.getState()+""));
-    }
-
     @GetMapping("/start")
     public Mono<String> start() {
         stateMachine.start();
-        return printState();
+        return printState(stateMachine);
     }
     @GetMapping("/download")
     public Mono<String> download() {
@@ -43,34 +38,34 @@ public class StateMachineController {
                 .build();
 
         stateMachine.sendEvent(message);
-        return printState();
+        return printState(stateMachine);
     }
     @GetMapping("/insert")
     public Mono<String> insert() {
         Message<Events> message = MessageBuilder.withPayload(Events.INSERT_START)
                 .setHeader("insert", "message insert").build();
         stateMachine.sendEvent(message);
-        return printState();
+        return printState(stateMachine);
     }
     @GetMapping("/update")
     public Mono<String> update() {
         stateMachine.sendEvent(Events.UPDATE_START);
-        return printState();
+        return printState(stateMachine);
     }
     @GetMapping("/calculation")
     public Mono<String> calculation() {
         stateMachine.sendEvent(Events.CALCULATION_START);
-        return printState();
+        return printState(stateMachine);
     }
     @GetMapping("/upload")
     public Mono<String> upload() {
         stateMachine.sendEvent(Events.UPDATE_START);
-        return printState();
+        return printState(stateMachine);
     }
     @GetMapping("/toListen")
     public Mono<String> toListen() {
         stateMachine.sendEvent(Events.ROLLBACK);
-        return printState();
+        return printState(stateMachine);
     }
 
 }

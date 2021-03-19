@@ -13,19 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.easy.web.reactor.statemachine.etl.config;
+package com.easy.web.reactor.statemachine.etl.listener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateContext.Stage;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
+import org.springframework.statemachine.state.State;
+import org.springframework.stereotype.Component;
 
 /**
  * @author think
  */
+@Component
+@Slf4j
 public class StateMachineLogListener extends StateMachineListenerAdapter<String, String> {
+
+
 
 	private final List<String> messages = new ArrayList<String>();
 
@@ -38,14 +46,31 @@ public class StateMachineLogListener extends StateMachineListenerAdapter<String,
 	}
 
 	@Override
+	public void stateExited(State<String, String> state) {
+		log.info("------------Test exited!");
+	}
+
+
+	@Override
+	public void stateChanged( State<String, String> from, State<String, String> to) {
+		log.info("------------Test listener!");
+	}
+
+	@Override
+	public void stateMachineError( StateMachine<String, String> stateMachine, Exception exception) {
+		log.info("---Some thing error! ");
+		log.info(exception.getMessage());
+	}
+
+	@Override
 	public void stateContext(StateContext<String, String> stateContext) {
 		if (stateContext.getStage() == Stage.STATE_ENTRY) {
-			messages.add("Enter " + stateContext.getTarget().getId());
+			messages.add("### Enter " + stateContext.getTarget().getId());
 			if (stateContext.getTarget().getId().equals("ERROR")) {
 				messages.add("ERROR got exception " + stateContext.getExtendedState().getVariables().get("error"));
 			}
 		} else if (stateContext.getStage() == Stage.STATE_EXIT) {
-			messages.add("Exit " + stateContext.getSource().getId());
+			messages.add("### Exit " + stateContext.getSource().getId());
 		}
 	}
 }

@@ -9,6 +9,8 @@
     <nestedClassifier xmi:type="uml:Signal" xmi:id="_y2oVIIcHEeuP14yX8sx_Dg" name="UPDATE_START"/>
     <nestedClassifier xmi:type="uml:Signal" xmi:id="_6Ws0UIcHEeuP14yX8sx_Dg" name="CALCULATION_START"/>
     <nestedClassifier xmi:type="uml:Signal" xmi:id="__Y9NQIcHEeuP14yX8sx_Dg" name="UPLOAD_START"/>
+    <nestedClassifier xmi:type="uml:Signal" xmi:id="_tgGCIIezEeulEY3sjMMZhA" name="ROLLBACK"/>
+    <nestedClassifier xmi:type="uml:Signal" xmi:id="_K_zBYIe0EeulEY3sjMMZhA" name="END"/>
     <region xmi:type="uml:Region" xmi:id="_jrzDUIb_EeuP14yX8sx_Dg" name="Region1">
       <transition xmi:type="uml:Transition" xmi:id="_Nttl8IcAEeuP14yX8sx_Dg" source="_nsw-YIb_EeuP14yX8sx_Dg" target="_Z2NMUIcBEeuP14yX8sx_Dg"/>
       <transition xmi:type="uml:Transition" xmi:id="_Ve8toIcAEeuP14yX8sx_Dg" source="_wVu_UIb_EeuP14yX8sx_Dg" target="_SnRV4IcAEeuP14yX8sx_Dg">
@@ -23,24 +25,23 @@
       <transition xmi:type="uml:Transition" xmi:id="_jOrNAIcAEeuP14yX8sx_Dg" source="_avgBQIcAEeuP14yX8sx_Dg" target="_ceerkIcAEeuP14yX8sx_Dg">
         <trigger xmi:type="uml:Trigger" xmi:id="__sFkoIcHEeuP14yX8sx_Dg" event="__i8PsIcHEeuP14yX8sx_Dg"/>
       </transition>
-      <transition xmi:type="uml:Transition" xmi:id="_6U46oIcAEeuP14yX8sx_Dg" source="_ceerkIcAEeuP14yX8sx_Dg" target="_3_ctQIcAEeuP14yX8sx_Dg"/>
       <transition xmi:type="uml:Transition" xmi:id="_fD4yIIcBEeuP14yX8sx_Dg" source="_Z2NMUIcBEeuP14yX8sx_Dg" target="_wVu_UIb_EeuP14yX8sx_Dg">
         <trigger xmi:type="uml:Trigger" xmi:id="_MpEN4IcHEeuP14yX8sx_Dg" name="Event" event="_IMvMgIcHEeuP14yX8sx_Dg"/>
       </transition>
-      <transition xmi:type="uml:Transition" xmi:id="_mydnYIcBEeuP14yX8sx_Dg" source="_ceerkIcAEeuP14yX8sx_Dg" target="_wVu_UIb_EeuP14yX8sx_Dg">
+      <transition xmi:type="uml:Transition" xmi:id="_mydnYIcBEeuP14yX8sx_Dg" source="_ceerkIcAEeuP14yX8sx_Dg" target="_Z2NMUIcBEeuP14yX8sx_Dg">
         <trigger xmi:type="uml:Trigger" xmi:id="_0gTzQIcIEeuP14yX8sx_Dg" event="_wzzsUIcIEeuP14yX8sx_Dg"/>
       </transition>
-      <transition xmi:type="uml:Transition" xmi:id="_rCTr8IcBEeuP14yX8sx_Dg" source="_avgBQIcAEeuP14yX8sx_Dg" target="_ZEq3IIcAEeuP14yX8sx_Dg"/>
+      <transition xmi:type="uml:Transition" xmi:id="_7P5aAIezEeulEY3sjMMZhA" source="_ceerkIcAEeuP14yX8sx_Dg" target="_6dcpYIezEeulEY3sjMMZhA">
+        <trigger xmi:type="uml:Trigger" xmi:id="_OwqD4Ie0EeulEY3sjMMZhA" event="_LH7CoIe0EeulEY3sjMMZhA"/>
+      </transition>
       <subvertex xmi:type="uml:Pseudostate" xmi:id="_nsw-YIb_EeuP14yX8sx_Dg" name="Start"/>
       <subvertex xmi:type="uml:State" xmi:id="_wVu_UIb_EeuP14yX8sx_Dg" name="DOWNLOAD"/>
       <subvertex xmi:type="uml:State" xmi:id="_SnRV4IcAEeuP14yX8sx_Dg" name="INSERT"/>
       <subvertex xmi:type="uml:State" xmi:id="_ZEq3IIcAEeuP14yX8sx_Dg" name="UPDATE"/>
       <subvertex xmi:type="uml:State" xmi:id="_avgBQIcAEeuP14yX8sx_Dg" name="CALCULATION"/>
       <subvertex xmi:type="uml:State" xmi:id="_ceerkIcAEeuP14yX8sx_Dg" name="UPLOAD"/>
-      <subvertex xmi:type="uml:FinalState" xmi:id="_3_ctQIcAEeuP14yX8sx_Dg" name="End"/>
-      <subvertex xmi:type="uml:State" xmi:id="_Z2NMUIcBEeuP14yX8sx_Dg" name="LISTEN">
-        <entry xmi:type="uml:Activity" xmi:id="_3EeV8IcEEeuP14yX8sx_Dg" name="Noice"/>
-      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_Z2NMUIcBEeuP14yX8sx_Dg" name="LISTEN"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_6dcpYIezEeulEY3sjMMZhA" name="End"/>
     </region>
   </packagedElement>
   <packagedElement xmi:type="uml:SignalEvent" xmi:id="_PamzUIcFEeuP14yX8sx_Dg" name="NOTICE_DOWNLOAD" signal="_YU_UYIcFEeuP14yX8sx_Dg"/>
@@ -49,5 +50,6 @@
   <packagedElement xmi:type="uml:SignalEvent" xmi:id="_zGbEoIcHEeuP14yX8sx_Dg" name="update_event" signal="_y2oVIIcHEeuP14yX8sx_Dg"/>
   <packagedElement xmi:type="uml:SignalEvent" xmi:id="_6eEAkIcHEeuP14yX8sx_Dg" name="calculation_event" signal="_6Ws0UIcHEeuP14yX8sx_Dg"/>
   <packagedElement xmi:type="uml:SignalEvent" xmi:id="__i8PsIcHEeuP14yX8sx_Dg" name="upload_event" signal="__Y9NQIcHEeuP14yX8sx_Dg"/>
-  <packagedElement xmi:type="uml:SignalEvent" xmi:id="_wzzsUIcIEeuP14yX8sx_Dg" name="redownload_event" signal="_YU_UYIcFEeuP14yX8sx_Dg"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="_wzzsUIcIEeuP14yX8sx_Dg" name="rollback_event" signal="_tgGCIIezEeulEY3sjMMZhA"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="_LH7CoIe0EeulEY3sjMMZhA" name="end_event" signal="_K_zBYIe0EeulEY3sjMMZhA"/>
 </uml:Model>
